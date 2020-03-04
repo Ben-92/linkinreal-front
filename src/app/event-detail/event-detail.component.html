@@ -1,0 +1,24 @@
+<p>event-detail works!</p>
+
+<div *ngIf="eventDetailObs  | async as eventDetail">
+
+    <h5>Id événement: {{eventDetail.id}}</h5>
+
+    <h5>Organisateur: ???</h5>
+
+    <button>Modifier</button>
+    <button (click)="onRemoveEvent(eventDetail.id)">Supprimer</button>
+
+    <h5>Adresse: ??? </h5>
+
+    <h5>Date: {{eventDetail.date | date:'d MMM y'}}</h5>
+    <h5>Heure: {{eventDetail.date | date:'h:mm'}}</h5>
+
+    <h5>Description: {{eventDetail.description}}</h5>
+
+    <h5>Nombre de participants: {{eventDetail.participantNb}}</h5>
+    <button>+</button>
+    <button>-</button>
+
+
+</div>
