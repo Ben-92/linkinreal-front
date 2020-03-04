@@ -1,1 +1,27 @@
-<p>event-list works!</p>
+
+
+
+<table>
+<tr *ngFor="let event of eventObs | async">
+
+
+  <td>
+   Date: {{event.date}}
+  </td>
+  <td>
+   Createur : {{event.creator.nickName}}
+  </td>
+  <td>
+    Catégorie : {{event.eventCategory.category}}
+  </td>
+
+  <td>
+    Nb de participants :{{event.participantNb}}
+  </td>
+
+  <td>
+    <button [routerLink]="['/event-detail', event.id]">Détail</button>
+  </td>
+
+</tr>
+</table>

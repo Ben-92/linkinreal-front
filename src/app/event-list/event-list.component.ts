@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {DataService} from '../data.service';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-event-list',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventListComponent implements OnInit {
 
-  constructor() { }
+
+  eventObs;
+
+  constructor(private dataService: DataService) {
+  }
 
   ngOnInit() {
+    /*get an observable containing the data of an event */
+    this.eventObs = this.dataService.getEventList().pipe(
+      map(backEvents => backEvents.content)
+    );
   }
 
 }

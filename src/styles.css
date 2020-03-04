@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+table
+{
+
+
+
+}
+
+
+th, td{
+
+  border: solid;
+  color: darkviolet;
+  border-collapse: collapse;
+  align-items: center;
+}
