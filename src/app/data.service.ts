@@ -17,4 +17,9 @@ export class DataService {
     return this.httpClient.get('http://localhost:8080/api/linkinreal/events');
   }
 
+
+  deleteEvent(eventId) {
+    return this.httpClient.delete('http://localhost:8080/api/linkinreal/events/' + eventId );
+  }
+
 }
