@@ -21,6 +21,7 @@ import { EventDetailComponent } from './event-detail/event-detail.component';
     RouterModule.forRoot([
       { path: '', component: EventListComponent },
       { path: 'detail', component: EventDetailComponent },
+      { path: 'event-detail/:eventId', component: EventDetailComponent },
     ]),
   ],
   providers: [],
