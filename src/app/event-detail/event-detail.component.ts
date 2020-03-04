@@ -18,4 +18,10 @@ eventDetailObs;
           this.eventDetailObs = this.dataService.getEventDetail(1);
   }
 
+  
+  onRemoveEvent(eventId) {
+    this.dataService.deleteEvent(eventId).subscribe();
+  }
+  
+
 }
