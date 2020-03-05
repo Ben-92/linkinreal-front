@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-event-detail',
@@ -8,20 +9,25 @@ import { DataService } from '../data.service';
 })
 export class EventDetailComponent implements OnInit {
 
-eventDetailObs;
+  eventDetailObs;
+  currentEventId;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private route: ActivatedRoute) { }
 
   ngOnInit() {
 
-          /*get an observable containing the data of an event */
-          this.eventDetailObs = this.dataService.getEventDetail(1);
+    this.route.paramMap.subscribe(params => {
+      this.currentEventId = params.get('eventId');
+
+      /*get an observable containing the data of an event */
+      this.eventDetailObs = this.dataService.getEventDetail(this.currentEventId);
+    });
   }
 
-  
+
   onRemoveEvent(eventId) {
     this.dataService.deleteEvent(eventId).subscribe();
   }
-  
+
 
 }
