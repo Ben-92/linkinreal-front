@@ -9,11 +9,6 @@ import {DataService} from '../data.service';
 })
 export class EventManagementComponent implements OnInit {
 
-   /* dateTest = function(){
-    const datePrev = new Date();
-    console.log (datePrev.getUTCDate);
-    return datePrev.getTime;
-  } */
 
   managementForm = this.formBuilder.group({
     description:' ',
@@ -37,6 +32,8 @@ export class EventManagementComponent implements OnInit {
   onAction(eventToAdd) {
     this.dataService.addEvent(eventToAdd).subscribe(savedEvent => console.log(savedEvent));
    }
+   
+
   
 
 
