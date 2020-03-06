@@ -1,0 +1,119 @@
+
+
+<form [formGroup]="managementForm" (ngSubmit)="onAction(managementForm.value)">
+
+  <div class="management-form">
+
+    <h2>Event</h2>
+    <div class="management-form-elt">
+    <label for="description">Descriptif de l'événement: </label>
+    <textarea id="description" formControlName="description"
+            rows="5" cols="33">
+    </textarea>
+  </div>
+
+  <div class="management-form-elt">
+    <label for="event-time">Heure de l'événement: </label>
+    <input type="datetime-local" id="event-time"
+       formControlName="date"> 
+      </div>
+
+      <div class="management-form-elt">
+    <label for="participant-nb">Nombre de participants</label>
+    <input type="number" formControlName="participantNb" id="participant-nb">
+  </div>
+
+<h2>Place</h2>
+  <div class="management-form-elt">
+    <label for="label">Intitulé du lieu: </label>
+    <input type="text" formControlName="label" id="label">
+  </div>
+
+  <div class="management-form-elt">
+    <label for="street-nb">Numéro de rue: </label>
+    <input type="number" formControlName="streetNumber" id="street-nb">
+  </div>
+
+  <div class="management-form-elt">
+    <label for="street">rue: </label>
+    <input type="text" formControlName="street" id="street">
+  </div>
+
+  <div class="management-form-elt">
+    <label for="postal-code">Code postal: </label>
+    <input type="number" formControlName="postalCode" id="postal-code">
+  </div>
+
+  <h2>Catégorie</h2>
+  <div class="management-form-elt">
+      <label for="category">Catégorie: </label>
+      <input type="text" formControlName="category" id="category">
+    </div>
+
+    <button type="submit">Enregistrer</button>
+
+  </div>
+
+</form>
+
+<!--
+
+    <label for="event-time">Heure de l'événement: </label>
+    <input type="datetime-local" id="event-time"
+       formControlName="date" value="2018-06-12T19:30"
+       min="2020-01-07T00:00" max="2018-06-14T00:00">
+
+    <label for="post-code">Code postal</label>
+    <input type="number" formControlName="postalCode" id="post-code">
+  
+    <label class="xxx">Marque</label>
+    <select formControlName="carBrand" class="xxx">
+      <option  value={{brand.name}} *ngFor="let brand of brandList">{{brand.name}}</option>
+    </select>
+  
+    <label class="xxx">Modèle</label>
+    <select formControlName="carModel" class="xxx">
+      <option value={{model.name}} *ngFor="let model of modelList">{{model.name}}</option>
+    </select>
+  
+    <label for="year">Année</label>
+    <input type="number" formControlName="year" id="year">
+  
+  
+    <p>Boite de vitesse :</p>
+    <div>
+      <input type="radio" id="autoChoice"
+      formControlName="gearbox" value="auto">
+      <label for="autoChoice">Automatique</label>
+  
+      <input type="radio" id="manualChoice"
+      formControlName="gearbox" value="manual">
+      <label for="manualChoice">Manuelle</label>
+    </div>
+  
+    <label for="ext-color">Couleur extérieure</label>
+    <input type="text" formControlName="outerColor" id="ext-color">
+  
+    <p>4 roues motrices :</p>
+    <div>
+      <input type="radio" id="fwdChoiceYes"
+      formControlName="fourWheelDrive" value=true>
+      <label for="fwdChoiceYes">Oui</label>
+  
+      <input type="radio" id="fwdChoiceNo"
+      formControlName="fourWheelDrive" value=false>
+      <label for="fwdChoiceNo">Non</label>
+  
+    </div>
+  
+    <label for="description">Descriptif de l'annonce</label>
+    <textarea id="description" formControlName="description"
+            rows="5" cols="33">
+    </textarea>
+  
+    <label for="price">Prix</label>
+    <input type="number" formControlName="price" id="price">
+  
+    <button type="submit">Enregistrer l'annonce</button>
+    -->
+  
