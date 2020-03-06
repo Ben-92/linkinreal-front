@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import {map, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-event-detail',
@@ -12,7 +14,7 @@ export class EventDetailComponent implements OnInit {
   eventDetailObs;
   currentEventId;
 
-  constructor(private dataService: DataService, private route: ActivatedRoute) { }
+  constructor(private dataService: DataService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
 
@@ -26,8 +28,21 @@ export class EventDetailComponent implements OnInit {
 
 
   onRemoveEvent(eventId) {
-    this.dataService.deleteEvent(eventId).subscribe();
+    this.dataService.deleteEvent(eventId)
+       .subscribe(() => alert("event " + eventId + " supprimé"));
   }
+  
+  /*
+  onRemoveEvent(eventId) {
+    this.dataService.deleteEvent(eventId)
+       .subscribe(
+         () => alert("event " + eventId + " supprimé"));
+         this.router.navigate(['']);
+       );
+  }
+  */
+
+
 
 
 }

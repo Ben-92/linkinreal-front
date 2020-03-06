@@ -11,6 +11,7 @@ import { EventListComponent } from './event-list/event-list.component';
 import { EventDetailComponent } from './event-detail/event-detail.component';
 import { EventManagementComponent } from './event-management/event-management.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
