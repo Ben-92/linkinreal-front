@@ -1,0 +1,8 @@
+management-form {
+    display:flex;
+}
+
+management-form-elt {
+    flex-direction: column;
+}
+

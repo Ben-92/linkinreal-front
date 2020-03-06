@@ -8,7 +8,10 @@ export class DataService {
 
   constructor(private httpClient: HttpClient) {
   }
-
+/**
+ * get an event with its Id
+ * @param eventId Id of the event to show
+ */
   getEventDetail(eventId) {
     return this.httpClient.get('http://localhost:8080/api/linkinreal/events/' + eventId);
   }
@@ -17,9 +20,28 @@ export class DataService {
     return this.httpClient.get('http://localhost:8080/api/linkinreal/events');
   }
 
-
+/**
+ * delete an event giving its Id
+ * @param eventId Od of the event to delete
+ */
   deleteEvent(eventId) {
     return this.httpClient.delete('http://localhost:8080/api/linkinreal/events/' + eventId );
+  }
+
+  /**
+   * adding an event !!! comment faire le lien avec les place, les creator, et les eventcategory
+   * @param eventToAdd event to Add
+   */
+  addEvent(eventToAdd) {
+    return this.httpClient.post('http://localhost:8080/api/linkinreal/events/', eventToAdd);
+  }
+
+  /**
+   * faut il passer par cette méthode pour les ajouts d'event, ie faut il d'abord ajouter la place ?
+   * @param placeToAdd 
+   */
+  addplace(placeToAdd) {
+    return this.httpClient.post('http://localhost:8080/api/places/', placeToAdd);
   }
 
 }

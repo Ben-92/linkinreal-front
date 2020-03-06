@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from '../data.service';
-import {map} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-event-list',
@@ -15,11 +15,13 @@ export class EventListComponent implements OnInit {
   constructor(private dataService: DataService) {
   }
 
+  
+  /*get an observable containing the data of an event */
   ngOnInit() {
-    /*get an observable containing the data of an event */
     this.eventObs = this.dataService.getEventList().pipe(
-      map(backEvents => backEvents.content)
+      map((backEvents : any)=> backEvents.content)
     );
   }
+  
 
 }
