@@ -31,7 +31,7 @@ export class EventDetailComponent implements OnInit {
     this.dataService.deleteEvent(eventId)
        .subscribe(() => alert("event " + eventId + " supprimé"));
   }
-  
+
   /*
   onRemoveEvent(eventId) {
     this.dataService.deleteEvent(eventId)
@@ -39,6 +39,10 @@ export class EventDetailComponent implements OnInit {
          () => alert("event " + eventId + " supprimé"));
          this.router.navigate(['']);
        );
+  }
+  */
+ /*
+     this.router.navigate(['../list'], { relativeTo: this.route });
   }
   */
 

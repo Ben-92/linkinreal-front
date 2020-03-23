@@ -29,7 +29,6 @@ export class DataService {
   }
 
   /**
-   * adding an event !!! comment faire le lien avec les place, les creator, et les eventcategory
    * @param eventToAdd event to Add
    */
   addEvent(eventToAdd) {
