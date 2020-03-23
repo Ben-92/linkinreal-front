@@ -1,28 +1,36 @@
-
-
 <form [formGroup]="managementForm" (ngSubmit)="onAction(managementForm.value)">
 
   <div class="management-form">
 
+    <h2>Organisateur</h2>
+    <div class="management-form-elt">
+      <label for="pseudo">Pseudo: </label>
+      <input type="text" formControlName="pseudo" id="pseudo">
+    </div>
+
+    <div class="management-form-elt">
+      <label for="email">Email: </label>
+      <input type="text" formControlName="email" id="email">
+    </div>
+
     <h2>Event</h2>
     <div class="management-form-elt">
-    <label for="description">Descriptif de l'événement: </label>
-    <textarea id="description" formControlName="description"
-            rows="5" cols="33">
+      <label for="description">Descriptif de l'événement: </label>
+      <textarea id="description" formControlName="description" rows="5" cols="33">
     </textarea>
-  </div>
+    </div>
 
-  <div class="management-form-elt">
-    <label for="event-time">Heure de l'événement: </label>
-    <input type="datetime-local" id="event-time"
-       formControlName="date"> 
-      </div>
+    <div class="management-form-elt">
+      <label for="event-time">Date de l'événement: </label>
+      <input type="datetime-local" id="event-time" formControlName="date">
+    </div>
 
-      <div class="management-form-elt">
-    <label for="participant-nb">Nombre de participants</label>
-    <input type="number" formControlName="participantNb" id="participant-nb">
-  </div>
+    <div class="management-form-elt">
+      <label for="participant-nb">Nombre de participants</label>
+      <input type="number" formControlName="participantNb" id="participant-nb">
+    </div>
 
+    
 <h2>Place</h2>
   <div class="management-form-elt">
     <label for="label">Intitulé du lieu: </label>
@@ -43,6 +51,7 @@
     <label for="postal-code">Code postal: </label>
     <input type="number" formControlName="postalCode" id="postal-code">
   </div>
+ 
 
   <h2>Catégorie</h2>
   <div class="management-form-elt">
@@ -50,9 +59,12 @@
       <input type="text" formControlName="category" id="category">
     </div>
 
+
     <button type="submit">Enregistrer</button>
+  
 
   </div>
+
 
 </form>
 
@@ -116,4 +128,3 @@
   
     <button type="submit">Enregistrer l'annonce</button>
     -->
-  
