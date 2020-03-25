@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {DataService} from '../data.service';
 import { Event } from '../event';
 import { Creator } from '../creator';
@@ -13,24 +13,29 @@ export class EventManagementComponent implements OnInit {
 
   eventToAdd : Event;
   creatorToAdd : Creator;
+  managementForm : FormGroup; 
 
-  managementForm = this.formBuilder.group({
-    pseudo: ' ',
-    email: ' ',
-    description:' ',
-    date: ' ',
-    participantNb:0,
-    label: ' ',
-    streetNumber: 0,
-    street: ' ',
-    postalCode: 0,
-    category: ' '
-  })
+
 
   constructor(private formBuilder: FormBuilder, 
               private dataService: DataService) { }
 
   ngOnInit() {
+
+    
+    this.managementForm = this.formBuilder.group({
+      pseudo:['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      description:'',
+      date: ['', Validators.required],
+      participantNb:0,
+      label: ['', Validators.required],
+      streetNumber: '',
+      street: '',
+      postalCode: ['',[Validators.minLength(5), Validators.maxLength(5)]],
+      city:['', Validators.required],
+      category: ['', Validators.required]
+    })
   }
 
 
@@ -47,19 +52,21 @@ export class EventManagementComponent implements OnInit {
     label : eventForm.label,
     streetNumber : eventForm.streetNumber,
     street : eventForm.street,
-    postalCode : eventForm.postalCode
+    postalCode : eventForm.postalCode,
+    city : eventForm.city
   } 
 
     /*creating category object */
     let categoryToAddObj = {
       category : eventForm.category
-    } 
+    }  
 
   /*creating event object */
   let eventToAddObj = {
     date : eventForm.date,
     description : eventForm.description,
-    participantNb : eventForm.participantNb,
+    /*participantNb : eventForm.participantNb,*/
+    /*participantNb : 0,*/
     creator : creatorToAddObj,
     place : placeToAddObj,
     eventCategory: categoryToAddObj
@@ -70,6 +77,7 @@ export class EventManagementComponent implements OnInit {
       .subscribe(savedEvent => console.log(savedEvent));
    }
    
+
 
 }
 
@@ -84,3 +92,16 @@ export class EventManagementComponent implements OnInit {
     this.eventToAdd.participantNb = eventForm.participantNb;
     this.eventToAdd.creator = this.creatorToAdd;
     */
+
+      /*managementForm = this.formBuilder.group({
+    pseudo:'',
+    email: '',
+    description:'',
+    date: '',
+    participantNb:0,
+    label: '',
+    streetNumber: '',
+    street: '',
+    postalCode: '',
+    category: ''
+  }) */
