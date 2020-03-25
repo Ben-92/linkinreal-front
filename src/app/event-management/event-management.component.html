@@ -1,72 +1,177 @@
+<h5 id="advice">Les champs avec le signe de la multiplication * sont à saisir</h5>
+
 <form [formGroup]="managementForm" (ngSubmit)="onAction(managementForm.value)">
 
   <div class="management-form">
 
-    <h2>Organisateur</h2>
-    <div class="management-form-elt">
-      <label for="pseudo">Pseudo: </label>
-      <input type="text" formControlName="pseudo" id="pseudo">
+    <h2 class="item-form-title">Qui qui organise ?</h2>
+    <div class="management-form-elt" >
+      <label for="pseudo">Pseudo (*): </label>
+      <input  type="text" 
+              formControlName="pseudo" 
+              id="pseudo" 
+              size="15" 
+              placeholder="exemple : bob22"
+              [ngClass]="{'error-effect':managementForm.get('pseudo').errors && (managementForm.get('pseudo').touched || managementForm.get('pseudo').dirty)}"
+              >
+    </div>
+    <div *ngIf="managementForm.get('pseudo').errors && (managementForm.get('pseudo').touched || managementForm.get('pseudo').dirty)">
+      <div *ngIf="managementForm.get('pseudo').errors.required" class="error-effect-title">
+          Bonjour, qui êtes vous ?
+      </div>
     </div>
 
+
     <div class="management-form-elt">
-      <label for="email">Email: </label>
-      <input type="text" formControlName="email" id="email">
+      <label for="email">Email (*): </label>
+      <input  type="email" 
+              formControlName="email" 
+              id="email" 
+              placeholder="exemple : bob@gmail.com"
+              [ngClass]="{'error-effect':managementForm.get('email').errors && (managementForm.get('email').touched || managementForm.get('email').dirty)}"
+              >
+    </div>
+    <div *ngIf="managementForm.get('email').errors && (managementForm.get('email').touched || managementForm.get('email').dirty)">
+      <div *ngIf="managementForm.get('email').errors.required" class="error-effect-title">
+        un email..et le contact est plus simple 
+      </div>
+      <div *ngIf="managementForm.get('email').errors.email" class="error-effect-title">
+          Il manque peut être un @...ou alors peut être un "." ?
+      </div>
     </div>
 
-    <h2>Event</h2>
+    <h2 class="item-form-title">Coté pratique</h2>
     <div class="management-form-elt">
-      <label for="description">Descriptif de l'événement: </label>
-      <textarea id="description" formControlName="description" rows="5" cols="33">
+      <label for="description">Description de l'événement: </label>
+      <textarea   id="description" 
+                  formControlName="description" 
+                  rows="5" 
+                  cols="33"
+                  placeholder="Description de l'événement">
     </textarea>
     </div>
 
     <div class="management-form-elt">
-      <label for="event-time">Date de l'événement: </label>
-      <input type="datetime-local" id="event-time" formControlName="date">
+      <label for="event-time">Date et heure de l'événement (*): </label>
+      <input  type="datetime-local" 
+              id="event-time" 
+              formControlName="date"
+              [ngClass]="{'error-effect':managementForm.get('date').errors && (managementForm.get('date').touched || managementForm.get('date').dirty)}"
+              >
+    </div>
+    <div *ngIf="managementForm.get('date').errors && (managementForm.get('date').touched || managementForm.get('date').dirty)">
+      <div *ngIf="managementForm.get('date').errors.required" class="error-effect-title">
+          "Toute cette circulation va me mettre en retard !"
+      </div>
+    </div>
+
+
+    <h2 class="item-form-title">On se retrouve où ?</h2>
+    <div class="management-form-elt">
+      <label for="label">Intitulé du lieu (*): </label>
+      <input  type="text" 
+              formControlName="label"
+              id="label"
+              placeholder="exemple : devant la tour Eiffel"
+              [ngClass]="{'error-effect':managementForm.get('label').errors && (managementForm.get('label').touched || managementForm.get('label').dirty)}"
+              >
+    </div>
+    <div *ngIf="managementForm.get('label').errors && (managementForm.get('label').touched || managementForm.get('label').dirty)">
+      <div *ngIf="managementForm.get('label').errors.required" class="error-effect-title">
+          un indice du lieu de l'activité ?
+      </div>
     </div>
 
     <div class="management-form-elt">
-      <label for="participant-nb">Nombre de participants</label>
-      <input type="number" formControlName="participantNb" id="participant-nb">
+      <label for="street-nb">Numéro de rue: </label>
+      <input  type="text" 
+              formControlName="streetNumber" 
+              size="4" 
+              maxlength="5"
+              id="street-nb">
     </div>
 
-    
-<h2>Place</h2>
-  <div class="management-form-elt">
-    <label for="label">Intitulé du lieu: </label>
-    <input type="text" formControlName="label" id="label">
-  </div>
+    <div class="management-form-elt">
+      <label for="street">Rue: </label>
+      <input  type="text" 
+              formControlName="street" 
+              id="street">
+    </div>
 
-  <div class="management-form-elt">
-    <label for="street-nb">Numéro de rue: </label>
-    <input type="number" formControlName="streetNumber" id="street-nb">
-  </div>
+    <div class="management-form-elt">
+      <label for="postal-code">Code postal: </label>
+      <input  type="text" 
+              formControlName="postalCode" 
+              id="postal-code"
+              size="4" 
+              maxlength="5"
+              [ngClass]="{'error-effect':managementForm.get('postalCode').errors && (managementForm.get('postalCode').touched || managementForm.get('postalCode').dirty)}"
+              >
+    </div>
 
-  <div class="management-form-elt">
-    <label for="street">rue: </label>
-    <input type="text" formControlName="street" id="street">
-  </div>
-
-  <div class="management-form-elt">
-    <label for="postal-code">Code postal: </label>
-    <input type="number" formControlName="postalCode" id="postal-code">
-  </div>
- 
-
-  <h2>Catégorie</h2>
-  <div class="management-form-elt">
-      <label for="category">Catégorie: </label>
-      <input type="text" formControlName="category" id="category">
+    <div class="management-form-elt">
+      <label for="city">Ville (*): </label>
+      <input  type="text" 
+              formControlName="city"
+              id="city"
+              [ngClass]="{'error-effect':managementForm.get('city').errors && (managementForm.get('city').touched || managementForm.get('city').dirty)}"
+              >
+    </div>
+    <div *ngIf="managementForm.get('city').errors && (managementForm.get('city').touched || managementForm.get('city').dirty)">
+      <div *ngIf="managementForm.get('city').errors.required" class="error-effect-title">
+          "Je vous vois pas...vous êtes sur qu'on est dans la même ville ?"
+      </div>
     </div>
 
 
-    <button type="submit">Enregistrer</button>
-  
+    <h2 class="item-form-title">Bon, c'est quoi le thème ?</h2>
+    <div class="management-form-elt">
+      <label for="category">Catégorie (*): </label>
+      <input  type="text" 
+              formControlName="category" 
+              id="category" 
+              placeholder="exemple: musique"
+              [ngClass]="{'error-effect':managementForm.get('category').errors && (managementForm.get('category').touched || managementForm.get('category').dirty)}"
+              >
+    </div>
+    <div *ngIf="managementForm.get('category').errors && (managementForm.get('category').touched || managementForm.get('category').dirty)">
+      <div *ngIf="managementForm.get('category').errors.required" class="error-effect-title">
+          Cinéma, musique, sport...
+      </div>
+    </div>
+
+
+    <div class="management-form-elt">
+      <button type="submit" id="submit-button">Enregistrer</button>
+    </div>
+
 
   </div>
 
 
 </form>
+
+    <!--
+    <div *ngIf="managementForm.get('pseudo').errors?.required && (managementForm.get('pseudo').touched || managementForm.get('pseudo').dirty)">
+      Le pseudo est obligatoire
+    </div>
+    -->
+
+      <!--<div *ngIf="pseudo.invalid && (pseudo.dirty || pseudo.touched)"
+        class="error-input">
+          <div *ngIf="name.errors.required">
+             Le pseudo est obligatoire
+          </div>
+      </div>-->
+
+<!--
+    <div class="management-form-elt">
+      <label for="participant-nb">Nombre de participants</label>
+      <input  type="number" 
+              formControlName="participantNb" 
+              id="participant-nb"> 
+    </div>
+    -->
 
 <!--
 

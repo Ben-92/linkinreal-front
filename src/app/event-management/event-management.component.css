@@ -1,8 +1,45 @@
-management-form {
+#advice {
+    text-align: center;
+}
+
+/*container selector of management form items. Items are displayed in column and page centered*/
+.management-form {
     display:flex;
-}
-
-management-form-elt {
     flex-direction: column;
+
+    margin : auto;
+    width:30%;
 }
 
+
+/*form items are themselves container selector of their inner elements. Elements are displayed in row
+and label and input at each side */
+.management-form-elt {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+   /* width:80%; */
+
+    margin-top:1%;
+}
+
+.item-form-title {
+    margin:5% auto;
+}
+
+#submit-button {
+    margin: 1% auto;
+}
+
+input:invalid {
+    color:red;
+}
+
+.error-effect {
+    background-color:lightcoral;
+}
+
+.error-effect-title {
+    color:lightcoral
+}
