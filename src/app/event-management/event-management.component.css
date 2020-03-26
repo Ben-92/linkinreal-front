@@ -19,8 +19,6 @@ and label and input at each side */
     flex-direction: row;
     justify-content: space-between;
 
-   /* width:80%; */
-
     margin-top:1%;
 }
 
@@ -43,3 +41,34 @@ input:invalid {
 .error-effect-title {
     color:lightcoral
 }
+
+/* for Ipad Pro*/
+@media screen and (max-width: 1024px) {
+    
+
+.management-form {
+    width:80%;
+}
+  }
+
+/* for mobile phones and classic Ipad*/
+@media screen and (max-width: 768px) {
+
+.management-form {
+    width:100%;
+}
+
+
+/*form items are themselves container selector of their inner elements. Elements are displayed in row
+and label and input at each side */
+.management-form-elt {
+
+    flex-direction: column;
+    align-items: center;
+}
+
+.error-effect-title {
+    text-align: center;
+}
+    
+      }

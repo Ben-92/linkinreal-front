@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {DataService} from '../data.service';
 import { Event } from '../event';
 import { Creator } from '../creator';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-event-management',
@@ -15,14 +16,19 @@ export class EventManagementComponent implements OnInit {
   creatorToAdd : Creator;
   managementForm : FormGroup; 
 
+  isSubmitted : boolean;
+
 
 
   constructor(private formBuilder: FormBuilder, 
-              private dataService: DataService) { }
+              private dataService: DataService,
+              private router: Router,
+              ) { }
 
   ngOnInit() {
 
-    
+    this.isSubmitted = false;
+
     this.managementForm = this.formBuilder.group({
       pseudo:['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -30,16 +36,21 @@ export class EventManagementComponent implements OnInit {
       date: ['', Validators.required],
       participantNb:0,
       label: ['', Validators.required],
-      streetNumber: '',
+      streetNumber: ['', Validators.pattern('[0-9]*')],
       street: '',
-      postalCode: ['',[Validators.minLength(5), Validators.maxLength(5)]],
+      postalCode: ['',[Validators.minLength(5), Validators.maxLength(5), Validators.pattern('[0-9]*')]],
       city:['', Validators.required],
       category: ['', Validators.required]
     })
   }
 
-
   onAction(eventForm) {
+
+  this.isSubmitted = true;
+
+  if (this.managementForm.invalid){
+    return;
+  }
 
   /*creating creator object */
   let creatorToAddObj = {
@@ -74,34 +85,13 @@ export class EventManagementComponent implements OnInit {
 
 
     this.dataService.addEvent(eventToAddObj)
-      .subscribe(savedEvent => console.log(savedEvent));
+      .subscribe(savedEvent => {console.log(savedEvent);
+                                },
+                  error => console.log(error),
+                  () => {alert('nouvel événement enregistré !');
+                        this.router.navigate([""]);
+                         })
    }
-   
-
 
 }
 
-  /*
-  this.creatorToAdd.nickName = eventForm.pseudo;
-  this.creatorToAdd.email = eventForm.email;
-  */
-
-    /*
-    this.eventToAdd.date = eventForm.date;
-    this.eventToAdd.description = eventForm.description;
-    this.eventToAdd.participantNb = eventForm.participantNb;
-    this.eventToAdd.creator = this.creatorToAdd;
-    */
-
-      /*managementForm = this.formBuilder.group({
-    pseudo:'',
-    email: '',
-    description:'',
-    date: '',
-    participantNb:0,
-    label: '',
-    streetNumber: '',
-    street: '',
-    postalCode: '',
-    category: ''
-  }) */
