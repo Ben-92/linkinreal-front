@@ -1,4 +1,5 @@
-<h5 id="advice">Les champs avec le signe de la multiplication * sont à saisir</h5>
+
+<h5 id="advice">Les champs avec un soleil * sont à saisir</h5>
 
 <form [formGroup]="managementForm" (ngSubmit)="onAction(managementForm.value)">
 
@@ -15,11 +16,13 @@
               [ngClass]="{'error-effect':managementForm.get('pseudo').errors && (managementForm.get('pseudo').touched || managementForm.get('pseudo').dirty)}"
               >
     </div>
-    <div *ngIf="managementForm.get('pseudo').errors && (managementForm.get('pseudo').touched || managementForm.get('pseudo').dirty)">
+    <div *ngIf="((managementForm.get('pseudo').errors && (managementForm.get('pseudo').touched || managementForm.get('pseudo').dirty))
+    || (isSubmitted && managementForm.get('pseudo').errors))">
       <div *ngIf="managementForm.get('pseudo').errors.required" class="error-effect-title">
-          Bonjour, qui êtes vous ?
+      Bonjour, qui êtes vous ?
       </div>
     </div>
+
 
 
     <div class="management-form-elt">
@@ -31,9 +34,10 @@
               [ngClass]="{'error-effect':managementForm.get('email').errors && (managementForm.get('email').touched || managementForm.get('email').dirty)}"
               >
     </div>
-    <div *ngIf="managementForm.get('email').errors && (managementForm.get('email').touched || managementForm.get('email').dirty)">
+    <div *ngIf="((managementForm.get('email').errors && (managementForm.get('email').touched || managementForm.get('email').dirty))
+                  || (isSubmitted && managementForm.get('email').errors))">
       <div *ngIf="managementForm.get('email').errors.required" class="error-effect-title">
-        un email..et le contact est plus simple 
+      Tout comme vous je hais les spams
       </div>
       <div *ngIf="managementForm.get('email').errors.email" class="error-effect-title">
           Il manque peut être un @...ou alors peut être un "." ?
@@ -59,7 +63,8 @@
               [ngClass]="{'error-effect':managementForm.get('date').errors && (managementForm.get('date').touched || managementForm.get('date').dirty)}"
               >
     </div>
-    <div *ngIf="managementForm.get('date').errors && (managementForm.get('date').touched || managementForm.get('date').dirty)">
+    <div *ngIf="((managementForm.get('date').errors && (managementForm.get('date').touched || managementForm.get('date').dirty))
+                  || (isSubmitted && managementForm.get('date').errors))">
       <div *ngIf="managementForm.get('date').errors.required" class="error-effect-title">
           "Toute cette circulation va me mettre en retard !"
       </div>
@@ -76,7 +81,8 @@
               [ngClass]="{'error-effect':managementForm.get('label').errors && (managementForm.get('label').touched || managementForm.get('label').dirty)}"
               >
     </div>
-    <div *ngIf="managementForm.get('label').errors && (managementForm.get('label').touched || managementForm.get('label').dirty)">
+    <div *ngIf="((managementForm.get('label').errors && (managementForm.get('label').touched || managementForm.get('label').dirty))
+                || (isSubmitted && managementForm.get('label').errors))">
       <div *ngIf="managementForm.get('label').errors.required" class="error-effect-title">
           un indice du lieu de l'activité ?
       </div>
@@ -90,6 +96,12 @@
               maxlength="5"
               id="street-nb">
     </div>
+    <div *ngIf="((managementForm.get('streetNumber').errors && (managementForm.get('streetNumber').touched || managementForm.get('streetNumber').dirty))
+    || (isSubmitted && managementForm.get('streetNumber').errors))">
+      <div *ngIf="managementForm.get('streetNumber').errors.pattern" class="error-effect-title">
+        "donne moi un 1, donne moi un 2, donne moi un nombre..."
+      </div>
+    </div>
 
     <div class="management-form-elt">
       <label for="street">Rue: </label>
@@ -97,6 +109,7 @@
               formControlName="street" 
               id="street">
     </div>
+
 
     <div class="management-form-elt">
       <label for="postal-code">Code postal: </label>
@@ -108,6 +121,12 @@
               [ngClass]="{'error-effect':managementForm.get('postalCode').errors && (managementForm.get('postalCode').touched || managementForm.get('postalCode').dirty)}"
               >
     </div>
+    <div *ngIf="((managementForm.get('postalCode').errors && (managementForm.get('postalCode').touched || managementForm.get('postalCode').dirty))
+            || (isSubmitted && managementForm.get('postalCode').errors))">
+      <div *ngIf="managementForm.get('postalCode').errors.pattern" class="error-effect-title">
+          "donne moi un nombre entre 0 et 99999 ..."
+      </div>
+    </div>
 
     <div class="management-form-elt">
       <label for="city">Ville (*): </label>
@@ -117,7 +136,8 @@
               [ngClass]="{'error-effect':managementForm.get('city').errors && (managementForm.get('city').touched || managementForm.get('city').dirty)}"
               >
     </div>
-    <div *ngIf="managementForm.get('city').errors && (managementForm.get('city').touched || managementForm.get('city').dirty)">
+    <div *ngIf="((managementForm.get('city').errors && (managementForm.get('city').touched || managementForm.get('city').dirty))
+                || (isSubmitted && managementForm.get('city').errors))">
       <div *ngIf="managementForm.get('city').errors.required" class="error-effect-title">
           "Je vous vois pas...vous êtes sur qu'on est dans la même ville ?"
       </div>
@@ -134,7 +154,8 @@
               [ngClass]="{'error-effect':managementForm.get('category').errors && (managementForm.get('category').touched || managementForm.get('category').dirty)}"
               >
     </div>
-    <div *ngIf="managementForm.get('category').errors && (managementForm.get('category').touched || managementForm.get('category').dirty)">
+    <div *ngIf="((managementForm.get('category').errors && (managementForm.get('category').touched || managementForm.get('category').dirty))
+                || (isSubmitted && managementForm.get('category').errors))">
       <div *ngIf="managementForm.get('category').errors.required" class="error-effect-title">
           Cinéma, musique, sport...
       </div>
@@ -142,7 +163,7 @@
 
 
     <div class="management-form-elt">
-      <button type="submit" id="submit-button">Enregistrer</button>
+      <button type="submit" id="submit-button">C'est parti !</button>
     </div>
 
 
@@ -150,86 +171,3 @@
 
 
 </form>
-
-    <!--
-    <div *ngIf="managementForm.get('pseudo').errors?.required && (managementForm.get('pseudo').touched || managementForm.get('pseudo').dirty)">
-      Le pseudo est obligatoire
-    </div>
-    -->
-
-      <!--<div *ngIf="pseudo.invalid && (pseudo.dirty || pseudo.touched)"
-        class="error-input">
-          <div *ngIf="name.errors.required">
-             Le pseudo est obligatoire
-          </div>
-      </div>-->
-
-<!--
-    <div class="management-form-elt">
-      <label for="participant-nb">Nombre de participants</label>
-      <input  type="number" 
-              formControlName="participantNb" 
-              id="participant-nb"> 
-    </div>
-    -->
-
-<!--
-
-    <label for="event-time">Heure de l'événement: </label>
-    <input type="datetime-local" id="event-time"
-       formControlName="date" value="2018-06-12T19:30"
-       min="2020-01-07T00:00" max="2018-06-14T00:00">
-
-    <label for="post-code">Code postal</label>
-    <input type="number" formControlName="postalCode" id="post-code">
-  
-    <label class="xxx">Marque</label>
-    <select formControlName="carBrand" class="xxx">
-      <option  value={{brand.name}} *ngFor="let brand of brandList">{{brand.name}}</option>
-    </select>
-  
-    <label class="xxx">Modèle</label>
-    <select formControlName="carModel" class="xxx">
-      <option value={{model.name}} *ngFor="let model of modelList">{{model.name}}</option>
-    </select>
-  
-    <label for="year">Année</label>
-    <input type="number" formControlName="year" id="year">
-  
-  
-    <p>Boite de vitesse :</p>
-    <div>
-      <input type="radio" id="autoChoice"
-      formControlName="gearbox" value="auto">
-      <label for="autoChoice">Automatique</label>
-  
-      <input type="radio" id="manualChoice"
-      formControlName="gearbox" value="manual">
-      <label for="manualChoice">Manuelle</label>
-    </div>
-  
-    <label for="ext-color">Couleur extérieure</label>
-    <input type="text" formControlName="outerColor" id="ext-color">
-  
-    <p>4 roues motrices :</p>
-    <div>
-      <input type="radio" id="fwdChoiceYes"
-      formControlName="fourWheelDrive" value=true>
-      <label for="fwdChoiceYes">Oui</label>
-  
-      <input type="radio" id="fwdChoiceNo"
-      formControlName="fourWheelDrive" value=false>
-      <label for="fwdChoiceNo">Non</label>
-  
-    </div>
-  
-    <label for="description">Descriptif de l'annonce</label>
-    <textarea id="description" formControlName="description"
-            rows="5" cols="33">
-    </textarea>
-  
-    <label for="price">Prix</label>
-    <input type="number" formControlName="price" id="price">
-  
-    <button type="submit">Enregistrer l'annonce</button>
-    -->

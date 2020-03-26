@@ -1,0 +1,24 @@
+#top {
+
+   background-image: url("../../assets/images/Parc.jpg");
+   border : solid 1px green;
+
+}
+
+h1 {
+    text-align: center;
+    padding:2%;
+    margin-top:0;
+    margin-bottom:0;
+}
+
+ul {
+    margin:1% auto;
+    width : 30%;
+
+    display: flex;
+    justify-content: center;
+}
+
+
+
