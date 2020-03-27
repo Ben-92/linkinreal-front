@@ -29,6 +29,7 @@ export class DataService {
   }
 
   /**
+   * http POST request when creating a new event in the event-management component  
    * @param eventToAdd event to Add
    */
   addEvent(eventToAdd) {
@@ -36,8 +37,8 @@ export class DataService {
   }
 
   /**
-   * faut il passer par cette méthode pour les ajouts d'event, ie faut il d'abord ajouter la place ?
-   * @param placeToAdd
+   * 
+   * @param placeToAdd 
    */
   addplace(placeToAdd) {
     return this.httpClient.post('http://localhost:8080/api/places/', placeToAdd);

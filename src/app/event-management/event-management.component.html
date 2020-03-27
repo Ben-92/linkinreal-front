@@ -1,5 +1,5 @@
 
-<h5 id="advice">Les champs avec un soleil * sont à saisir</h5>
+<h5 id="advice">A minima, les champs au soleil (*) sont à saisir</h5>
 
 <form [formGroup]="managementForm" (ngSubmit)="onAction(managementForm.value)">
 
@@ -16,6 +16,8 @@
               [ngClass]="{'error-effect':managementForm.get('pseudo').errors && (managementForm.get('pseudo').touched || managementForm.get('pseudo').dirty)}"
               >
     </div>
+    <!--displaying a message under the input if the pseudo is not filled in-->
+    <!--this control is executed on submit and when the user clicks in the input or changes its value-->
     <div *ngIf="((managementForm.get('pseudo').errors && (managementForm.get('pseudo').touched || managementForm.get('pseudo').dirty))
     || (isSubmitted && managementForm.get('pseudo').errors))">
       <div *ngIf="managementForm.get('pseudo').errors.required" class="error-effect-title">
@@ -40,7 +42,7 @@
       Tout comme vous je hais les spams
       </div>
       <div *ngIf="managementForm.get('email').errors.email" class="error-effect-title">
-          Il manque peut être un @...ou alors peut être un "." ?
+          Il manque peut être un morceau ?
       </div>
     </div>
 
@@ -66,7 +68,7 @@
     <div *ngIf="((managementForm.get('date').errors && (managementForm.get('date').touched || managementForm.get('date').dirty))
                   || (isSubmitted && managementForm.get('date').errors))">
       <div *ngIf="managementForm.get('date').errors.required" class="error-effect-title">
-          "Toute cette circulation va me mettre en retard !"
+          "Cette circulation va nous mettre en retard !"
       </div>
     </div>
 
@@ -84,7 +86,7 @@
     <div *ngIf="((managementForm.get('label').errors && (managementForm.get('label').touched || managementForm.get('label').dirty))
                 || (isSubmitted && managementForm.get('label').errors))">
       <div *ngIf="managementForm.get('label').errors.required" class="error-effect-title">
-          un indice du lieu de l'activité ?
+          allez..un petit indice ?
       </div>
     </div>
 
@@ -94,12 +96,14 @@
               formControlName="streetNumber" 
               size="4" 
               maxlength="5"
-              id="street-nb">
+              id="street-nb"> 
     </div>
-    <div *ngIf="((managementForm.get('streetNumber').errors && (managementForm.get('streetNumber').touched || managementForm.get('streetNumber').dirty))
+    <!--displaying a message under the input if the street number is not numeric-->
+    <!--this control is executed on submit and when the user changes its value-->
+    <div *ngIf="((managementForm.get('streetNumber').errors && managementForm.get('streetNumber').dirty)
     || (isSubmitted && managementForm.get('streetNumber').errors))">
       <div *ngIf="managementForm.get('streetNumber').errors.pattern" class="error-effect-title">
-        "donne moi un 1, donne moi un 2, donne moi un nombre..."
+        Des chiffres et des chiffres...
       </div>
     </div>
 
@@ -124,7 +128,7 @@
     <div *ngIf="((managementForm.get('postalCode').errors && (managementForm.get('postalCode').touched || managementForm.get('postalCode').dirty))
             || (isSubmitted && managementForm.get('postalCode').errors))">
       <div *ngIf="managementForm.get('postalCode').errors.pattern" class="error-effect-title">
-          "donne moi un nombre entre 0 et 99999 ..."
+          "Pense à un chiffre entre 00001 et 99999"
       </div>
     </div>
 
@@ -139,12 +143,12 @@
     <div *ngIf="((managementForm.get('city').errors && (managementForm.get('city').touched || managementForm.get('city').dirty))
                 || (isSubmitted && managementForm.get('city').errors))">
       <div *ngIf="managementForm.get('city').errors.required" class="error-effect-title">
-          "Je vous vois pas...vous êtes sur qu'on est dans la même ville ?"
+          "Ici...Londres !"
       </div>
     </div>
 
 
-    <h2 class="item-form-title">Bon, c'est quoi le thème ?</h2>
+    <h2 class="item-form-title">... dans quelle catégorie ?</h2>
     <div class="management-form-elt">
       <label for="category">Catégorie (*): </label>
       <input  type="text" 
@@ -169,5 +173,9 @@
 
   </div>
 
-
 </form>
+
+
+<h4 id="message">{{message}}</h4>
+
+
