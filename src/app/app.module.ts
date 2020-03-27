@@ -27,7 +27,6 @@ import { EventManagementComponent } from './event-management/event-management.co
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: EventListComponent },
-      { path: 'detail', component: EventDetailComponent },
       { path: 'event-detail/:eventId', component: EventDetailComponent },
       { path: 'create', component: EventManagementComponent  },
     ]),

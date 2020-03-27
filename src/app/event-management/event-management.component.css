@@ -1,8 +1,10 @@
+/*centering the advice at the beginning of the form */
 #advice {
     text-align: center;
 }
 
-/*container selector of management form items. Items are displayed in column and page centered*/
+
+/*container selector of management-form items. Items are displayed in column and page centered*/
 .management-form {
     display:flex;
     flex-direction: column;
@@ -12,8 +14,8 @@
 }
 
 
-/*form items are themselves container selector of their inner elements. Elements are displayed in row
-and label and input at each side */
+/*form items are also a container of their inner elements. Inner elements (labels and inputs) are displayed in row
+and localised at each side of the parent div element*/
 .management-form-elt {
     display:flex;
     flex-direction: row;
@@ -22,18 +24,18 @@ and label and input at each side */
     margin-top:1%;
 }
 
+/*centering the titles of the form */
 .item-form-title {
     margin:5% auto;
 }
 
+/*centering the submit button */
 #submit-button {
     margin: 1% auto;
 }
 
-input:invalid {
-    color:red;
-}
 
+/*colorisation of input and error messages */
 .error-effect {
     background-color:lightcoral;
 }
@@ -42,25 +44,30 @@ input:invalid {
     color:lightcoral
 }
 
-/* for Ipad Pro*/
+#message {
+    text-align: center;
+    color: lightcoral;
+}
+
+
+/* for Ipad Pro and Ipad : 80% of full screen display (1024px and less)*/
 @media screen and (max-width: 1024px) {
-    
 
 .management-form {
     width:80%;
 }
-  }
+}
 
-/* for mobile phones and classic Ipad*/
-@media screen and (max-width: 768px) {
+
+/* for mobile phones and all tablets equals or less than 767px,
+labels and inputs are displayed in column and at full screen width */
+@media screen and (max-width: 767px) {
 
 .management-form {
     width:100%;
 }
 
 
-/*form items are themselves container selector of their inner elements. Elements are displayed in row
-and label and input at each side */
 .management-form-elt {
 
     flex-direction: column;
@@ -71,4 +78,4 @@ and label and input at each side */
     text-align: center;
 }
     
-      }
+}

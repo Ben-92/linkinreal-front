@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {DataService} from '../data.service';
-import { Event } from '../event';
-import { Creator } from '../creator';
-import { Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-event-management',
@@ -12,29 +10,30 @@ import { Router} from '@angular/router';
 })
 export class EventManagementComponent implements OnInit {
 
-  eventToAdd : Event;
-  creatorToAdd : Creator;
   managementForm : FormGroup; 
 
   isSubmitted : boolean;
 
 
+  message : String;
 
+
+
+/*injecting the dataservice and formBuilder */
   constructor(private formBuilder: FormBuilder, 
-              private dataService: DataService,
-              private router: Router,
+              private dataService: DataService
               ) { }
 
   ngOnInit() {
 
     this.isSubmitted = false;
 
+/*defining the Formcontrol names and associating them with Validators */ 
     this.managementForm = this.formBuilder.group({
       pseudo:['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       description:'',
       date: ['', Validators.required],
-      participantNb:0,
       label: ['', Validators.required],
       streetNumber: ['', Validators.pattern('[0-9]*')],
       street: '',
@@ -44,11 +43,17 @@ export class EventManagementComponent implements OnInit {
     })
   }
 
+  /**
+   * The new Event form is submitted
+   * @param eventForm : event Form value
+   */
   onAction(eventForm) {
 
   this.isSubmitted = true;
 
+  /*not going further if not all the input fields have succeeded the Validator controls */
   if (this.managementForm.invalid){
+    this.message = "hum...on dirait qu'il manque des informations"
     return;
   }
 
@@ -76,20 +81,20 @@ export class EventManagementComponent implements OnInit {
   let eventToAddObj = {
     date : eventForm.date,
     description : eventForm.description,
-    /*participantNb : eventForm.participantNb,*/
-    /*participantNb : 0,*/
     creator : creatorToAddObj,
     place : placeToAddObj,
     eventCategory: categoryToAddObj
   } 
 
-
-    this.dataService.addEvent(eventToAddObj)
-      .subscribe(savedEvent => {console.log(savedEvent);
-                                },
-                  error => console.log(error),
-                  () => {alert('nouvel événement enregistré !');
-                        this.router.navigate([""]);
+  /**
+   * retrieving observable from posting a new Event object
+   * displaying message to the user whereas the POST ended ok or ko
+   */
+  this.dataService.addEvent(eventToAddObj)
+      .subscribe(savedEvent => console.log(savedEvent),
+                  error => {console.log(error);
+                            this.message = "Oups...petit souci";},
+                  () => {this.message = 'Nouvel événement enregistré !';
                          })
    }
 
