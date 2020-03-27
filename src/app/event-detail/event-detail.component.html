@@ -16,10 +16,34 @@
     <h5>Description: {{eventDetail.description}}</h5>
 
     <h5>Nombre de participants: {{eventDetail.participantNb}}</h5>
-    <button>+</button>
-    <button>-</button>
 
-    <!--<button (click)="onValidateEvent(eventDetail.id)">Valider</button> -->
+
+
+  <table>
+    <tr *ngFor="let participant of participantByEventIdList ">
+
+      <td >
+        participant: {{participant.nickName}}
+      </td>
+
+    </tr>
+  </table>
+
+
+
+  <form [formGroup]="participantForm"  (ngSubmit)="postParticipant(participantForm.value)">
+    <div>
+      <label for="nickName">Saisir votre nickName :</label>
+      <input id="nickName" type="text" formControlName="nickName">
+    </div>
+
+    <button  type="submit">Soumettre</button>
+
+
+  </form>
+
+
+
 
 
 </div>
