@@ -15,13 +15,13 @@ export class EventListComponent implements OnInit {
   constructor(private dataService: DataService) {
   }
 
-  
+
   /*get an observable containing the data of an event */
   ngOnInit() {
     this.eventObs = this.dataService.getEventList().pipe(
-      map((backEvents : any)=> backEvents.content)
+      map((backEvents: any) => backEvents.content)
     );
   }
-  
+
 
 }
