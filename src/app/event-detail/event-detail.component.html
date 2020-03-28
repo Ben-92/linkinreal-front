@@ -15,7 +15,9 @@
 
     <h5>Description: {{eventDetail.description}}</h5>
 
-    <h5>Nombre de participants: {{eventDetail.participantNb}}</h5>
+    <button (click)="lengthList()">Nombre de participants: </button>
+<p>{{nb}}</p>
+
 
 
 
@@ -38,7 +40,9 @@
     </div>
 
     <button  type="submit">Soumettre</button>
-
+<!--
+<p *ngIf="nickNameIsParticipant(newParticipant.nickName,participantByEventIdList )">{{userMessage}}</p>
+-->
 
   </form>
 

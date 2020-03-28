@@ -43,6 +43,10 @@ export class DataService {
     return this.httpClient.post('http://localhost:8080/api/places/', placeToAdd);
   }
 
+  getParticipants() {
+    return this.httpClient.get('http://localhost:8080/api/linkinreal/participant/');
+  }
+
   addParticipant(participant) {
     console.log('dans service');
     return this.httpClient.post('http://localhost:8080/api/linkinreal/participant/', participant);

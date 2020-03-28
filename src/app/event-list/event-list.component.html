@@ -3,7 +3,10 @@
 
 <table>
 <tr *ngFor="let event of eventObs | async">
+<!--
 
+<button (click)="participantNb(event.id)">nb</button>
+-->
 
   <td>
    Date: {{event.date}}
@@ -15,9 +18,9 @@
     Catégorie : {{event.eventCategory.category}}
   </td>
 
-  <td>
-    Nb de participants :{{event.participantNb}}
-  </td>
+
+
+
 
   <td>
     <button [routerLink]="['/event-detail', event.id]">Détail</button>

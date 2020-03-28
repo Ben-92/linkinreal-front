@@ -21,7 +21,16 @@ export class EventListComponent implements OnInit {
     this.eventObs = this.dataService.getEventList().pipe(
       map((backEvents: any) => backEvents.content)
     );
+
   }
+
+
+  /* participantNb(eventId) {
+     /!*this.participantsList = this.dataService.getParticipantsByEventId(eventId);*!/
+     for (this.participant of this.participants) {
+       console.log(this.participant.nickName);
+     }
+   }*/
 
 
 }

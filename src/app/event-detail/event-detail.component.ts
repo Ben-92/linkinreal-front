@@ -13,9 +13,10 @@ import {FormBuilder} from '@angular/forms';
 })
 export class EventDetailComponent implements OnInit {
 
+  nb;
+  userMessage = 'Participant déja inscrit avec ce nickName';
   eventDetailObs;
   currentEventId;
-  participantNb;
   participantByEventIdList;
   newParticipant = new Participant();
   participant;
@@ -34,9 +35,20 @@ export class EventDetailComponent implements OnInit {
       this.eventDetailObs = this.dataService.getEventDetail(this.currentEventId);
     });
     this.getParticipantByEventId(this.currentEventId);
+
+
   }
 
+  /*Calcul longueur participantByEventIdList*/
+  lengthList() {
+    this.nb = this.participantByEventIdList.length;
+    return this.participantByEventIdList.length;
+  }
+
+
+
   nickNameIsParticipant(nickName) {
+
     for (this.participant of this.participantByEventIdList) {
       if (this.participant.nickName === nickName) {
         return true;
@@ -59,13 +71,13 @@ export class EventDetailComponent implements OnInit {
   }
 
 
+
   postParticipant(participantForm) {
 
     this.newParticipant.nickName = participantForm.nickName;
     this.newParticipant.eventId = this.currentEventId;
 
-
-    if (!this.nickNameIsParticipant(this.newParticipant.nickName)) {
+    if (this.newParticipant.nickName.length !== 0 && !this.nickNameIsParticipant(this.newParticipant.nickName)) {
       this.dataService.addParticipant(this.newParticipant).subscribe(
         (response) => {
           this.getParticipantByEventId(this.currentEventId);
