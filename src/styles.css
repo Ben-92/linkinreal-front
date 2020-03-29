@@ -1,15 +1,13 @@
-table
-{
-
-
-
-}
 
 
 th, td{
 
   border: solid;
-  color: darkviolet;
+  border-color: deepskyblue;
+  color: steelblue;
   border-collapse: collapse;
   align-items: center;
 }
+
+
+

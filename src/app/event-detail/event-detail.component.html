@@ -1,30 +1,35 @@
 
 <div *ngIf="eventDetailObs  | async as eventDetail">
 
-    <h5>Id événement: {{eventDetail.id}}</h5>
+    <h5>Evenement n°: {{eventDetail.id}}</h5>
 
     <h5>Organisateur: {{eventDetail.creator.nickName}}</h5>
 
     <button>Modifier</button>
     <button (click)="onRemoveEvent(eventDetail.id)">Supprimer</button>
 
-    <h5>Adresse: {{eventDetail.place.streetNumber}} {{eventDetail.place.street}} {{eventDetail.place.postalCode}} </h5>
+    <h5>Lieu du rendez-vous: </h5>
+  <p>{{eventDetail.place.streetNumber}} {{eventDetail.place.street}} {{eventDetail.place.postalCode}} </p>
 
+  <div id="dateHeure">
     <h5>Date: {{eventDetail.date | date:'d MMM y'}}</h5>
     <h5>Heure: {{eventDetail.date | date:'h:mm'}}</h5>
-
+  </div>
     <h5>Description: {{eventDetail.description}}</h5>
 
-    <h5>Nombre de participants: {{eventDetail.participantNb}}</h5>
+    <button (click)="lengthList()">Nombre de participants: </button>
+<p>{{nb}}</p>
 
 
 
-  <table>
+
+  <table >
     <tr *ngFor="let participant of participantByEventIdList ">
 
-      <td >
+      <td id="participantList">
         participant: {{participant.nickName}}
       </td>
+      <button *ngIf="allowedToDelete(participant.nickName)" (click)="deleteParticipant(participant.id)">delete</button>
 
     </tr>
   </table>
@@ -38,8 +43,7 @@
     </div>
 
     <button  type="submit">Soumettre</button>
-
-
+<p id="errorMessage">{{userMessage}}</p>
   </form>
 
 

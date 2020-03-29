@@ -11,7 +11,7 @@ export class EventListComponent implements OnInit {
 
 
   eventObs;
-
+  eventId;
   constructor(private dataService: DataService) {
   }
 
@@ -21,7 +21,11 @@ export class EventListComponent implements OnInit {
     this.eventObs = this.dataService.getEventList().pipe(
       map((backEvents: any) => backEvents.content)
     );
-  }
+
+      }
+
+
+
 
 
 }
