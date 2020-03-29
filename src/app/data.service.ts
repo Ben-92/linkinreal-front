@@ -47,12 +47,17 @@ export class DataService {
     return this.httpClient.get('http://localhost:8080/api/linkinreal/participant/');
   }
 
+  deleteParticipant(participantId) {
+    return this.httpClient.delete('http://localhost:8080/api/linkinreal/participant/' + participantId);
+  }
+
   addParticipant(participant) {
-    console.log('dans service');
+
     return this.httpClient.post('http://localhost:8080/api/linkinreal/participant/', participant);
   }
 
   getParticipantsByEventId(eventId) {
+   
     return this.httpClient.get('http://localhost:8080/api/linkinreal/participant/' + eventId);
   }
 

@@ -11,7 +11,7 @@ export class EventListComponent implements OnInit {
 
 
   eventObs;
-
+  eventId;
   constructor(private dataService: DataService) {
   }
 
@@ -22,15 +22,10 @@ export class EventListComponent implements OnInit {
       map((backEvents: any) => backEvents.content)
     );
 
-  }
+      }
 
 
-  /* participantNb(eventId) {
-     /!*this.participantsList = this.dataService.getParticipantsByEventId(eventId);*!/
-     for (this.participant of this.participants) {
-       console.log(this.participant.nickName);
-     }
-   }*/
+
 
 
 }

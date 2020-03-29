@@ -1,0 +1,14 @@
+#errorMessage{
+  color: red;
+}
+
+
+#participantList{
+  color: green;
+  border : solid 2px green;
+}
+
+#dateHeure{
+  border : solid 2px gray;
+  width: 15%;
+}

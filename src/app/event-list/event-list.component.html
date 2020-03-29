@@ -3,11 +3,8 @@
 
 <table>
 <tr *ngFor="let event of eventObs | async">
-<!--
 
-<button (click)="participantNb(event.id)">nb</button>
--->
-
+<td>N° : {{event.id}}</td>
   <td>
    Date: {{event.date}}
   </td>
